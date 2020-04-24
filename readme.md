@@ -1,5 +1,7 @@
 # Install an App Service with a service endpoint with outbound traffic routed through a Firewall and inbound traffic coming through an App Gateway.
 
+**UPDATE: as of April 2020 the custom DNS server is not needed, an alternate version of this repo can be found here [https://github.com/fortunkam/webapp-serviceendpoint](https://github.com/fortunkam/webapp-serviceendpoint)**
+
 ## Prerequisites: 
 For the Azure CLI script I am running them on Ubuntu in the Windows Subsystem for Linux (WSL v1).  I have installed jq to make json parsing a little easier.  To install it yourself use `sudo apt-get install jq`.
 To Zip powershell modules ready to upload to blob I am using the zip package `sudo apt install zip`
