@@ -40,7 +40,7 @@ resource "azurerm_app_service" "website" {
     }
   }
 
-  depends_on = [azurerm_public_ip.gateway]
+  depends_on = [azurerm_application_gateway.appgateway]
 
 }
 
