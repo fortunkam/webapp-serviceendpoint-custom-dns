@@ -2,21 +2,9 @@
 
 **UPDATE: as of April 2020 the custom DNS server is not needed, an alternate version of this repo can be found here [https://github.com/fortunkam/webapp-serviceendpoint](https://github.com/fortunkam/webapp-serviceendpoint)**
 
-## Prerequisites: 
-For the Azure CLI script I am running them on Ubuntu in the Windows Subsystem for Linux (WSL v1).  I have installed jq to make json parsing a little easier.  To install it yourself use `sudo apt-get install jq`.
-To Zip powershell modules ready to upload to blob I am using the zip package `sudo apt install zip`
-You will need to provide a password for the DNS VM.  AzureAdmin is the default user name.
+**UPDATE: May 2020 - the Azure CLI version of this script will no longer be updated and has been moved the /archive folder**
 
-## Run the script 
-The script can be be found [here](./Setup.sh), it was designed in Ubuntu running on WSL. (Your mileage may vary if you run this on something else). I am running it with `bash setup.sh`  (Note: If you run this on ubuntu with the `sh setup.sh` command it will fail with a Bad Substitution error, this is because I am using a bash specific substring call that is not understood by sh/dash)
-The script relies on globally unique names so change the PREFIX variable before you run this.
-Make sure you change the LOC varaible to your required region.  (a list of regions can be found by running the following command `az account list-locations --query "[].name" -o tsv`)
-Note: The script can take up to 60 minutes to run (provisioning an Application Gateway can take time).
-
-## Clean up
-I have added a delete-all script [here](./delete-all.sh) to remove all the resource groups (you will need to tweak the PREFIX variable).  Note: This deletes everything unprompted so be sure you want to use it!  (`bash delete-all.sh`)
-
-## Alternatively use the Terraform script
+## How to use the Terraform script
 In the /terraform folder are a selection of tf files.  You will need to have terraform installed (I am running v0.12.24 on Powershell Core 7).
 run `terraform init` in a powershell prompt and then run the [setup powershell script here](./terraform/setup.ps1), this script runs the `terraform apply` and then deploys the sample app to the website.
 The resource prefix and the location are defined as [variables](./terraform/variables.tf) and you should provide new values (particularly for the prefix). 
@@ -34,7 +22,7 @@ The script will create
 - An App Service (Website + plan) running a simple node application, locked down using access restrictions and service endpoints
 - A Firewall that all outbound network traffic is routing through
 - An App Gateway that all inbound traffic to the app service is routed through.
-- A VM hosting a custom DNS Server.
+- A VM Scale Set hosting a custom DNS Forwarder, with a load balancer (A commented out version of the script exists for a single VM running the same scripts ).
 
 ## How does the inbound traffic get routed to my website
 

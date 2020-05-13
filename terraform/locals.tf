@@ -63,4 +63,14 @@ locals  {
     dns_github_application_rule="github_rule"
     dns_npm_application_rule_collection="npm_rule_collection"
     dns_npm_application_rule="npm_rule"
+
+    dns_vmss="${var.prefix}-d"
+    dns_vmss_nsg="${var.prefix}-dns-vmss-nsg"
+    dns_vmss_disk="${var.prefix}-dns-vmss-disk"
+    dns_vmss_internal_ipconfig="${var.prefix}-dns-vmss-in-config"
+    dns_vmss_internal_nic="${var.prefix}-dns-vmss-in-nic"
+    dns_loadbalancer_name="${var.prefix}-lb"
+    dns_loadbalancer_backend_address_pool="${var.prefix}-lb-backend"
+    dns_port = "53"
+    dns_vmss_frontend_IP_configuration_name="privateIPAddress"
 }

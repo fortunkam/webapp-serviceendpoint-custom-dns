@@ -1,8 +1,6 @@
 Configuration DNSServer {
-
-    param ([string]$MachineName)
-
-    Node $MachineName {
+    
+    Node localhost {
 
         WindowsFeature DnsServer {
             Ensure = 'Present'

@@ -1,5 +1,9 @@
+terraform {
+  experiments = [variable_validation]
+}
+
 provider "azurerm" {
-  version = "~> 2.3"
+  version = "~> 2.9"
   features {}
 }
 provider "random" {
